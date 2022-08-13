@@ -1,0 +1,11 @@
+* {
+    background-color: rgb(248, 244, 226);
+    font-family: 'Inconsolata', monospace;
+    outline: none;
+}
+
+h1 {
+    margin: 1rem auto;
+    text-align: center;
+    text-transform: uppercase;
+}
