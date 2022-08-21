@@ -1,7 +1,7 @@
 <script>
-	let movie = '';
+	let movie = "";
 
-	$: searchquery = 'User searched for ' + movie;
+	$: searchquery = 'User searched for "' + movie + '"';
 </script>
 
 <svelte:head>
@@ -10,11 +10,18 @@
 <h1>Search</h1>
 <!-- Create a form text input-->
 <form method="get">
-	<input type="text" bind:value={movie} name="search" id="search" autocomplete="off" />
+	<input
+		type="text"
+		bind:value={movie}
+		name="search"
+		id="search"
+		autocomplete="off"
+		placeholder="Search for a movie or a TV show"
+	/>
 	<input type="button" value="Search" />
 </form>
 
-{#if movie !== ''}
+{#if movie !== ""}
 	<p>{searchquery}</p>
 {/if}
 <p />
@@ -26,7 +33,7 @@
 		align-items: center;
 		margin: 1rem;
 	}
-	input[type='text'] {
+	input[type="text"] {
 		border: 1px solid #000;
 		border-radius: 8px;
 		padding: 0.5rem;
@@ -38,14 +45,14 @@
 		box-shadow: inset 0 0 0 1px #000;
 	}
 
-	input[type='button'] {
+	input[type="button"] {
 		border: 1px solid #000;
 		border-radius: 8px;
 		padding: 0.5rem;
 		margin: 0.5rem;
 	}
 
-	input[type='button']:hover {
+	input[type="button"]:hover {
 		background-color: #fff;
 		color: #f00;
 		cursor: pointer;
