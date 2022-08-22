@@ -18,11 +18,11 @@
 			}
 		);
 		const data = await res.json();
-		if (data.header["status"] == 200) {
-			console.log(data.body);
+		if (data) {
+			console.log(data);
 			// window.location.href = "/";
 		} else {
-			console.log(data.body);
+			console.log("error");
 		}
 	}
 </script>
