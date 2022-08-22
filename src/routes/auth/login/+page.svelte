@@ -2,6 +2,8 @@
 	let username = "";
 	let password = "";
 	let message;
+	import { browser } from "$app/env";
+
 	async function login(e) {
 		e.preventDefault();
 		const res = await fetch(
@@ -20,7 +22,10 @@
 		const data = await res.json();
 		if (data) {
 			console.log(data);
-			// window.location.href = "/";
+			if (browser && data.jwt) {
+				localStorage.setItem("user", JSON.stringify(data));
+				window.location.href = "/";
+			}
 		} else {
 			console.log("error");
 		}

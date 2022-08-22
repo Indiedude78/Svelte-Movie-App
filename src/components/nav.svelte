@@ -1,6 +1,10 @@
 <script>
     import AppCss from "./../app.css";
-    let user = "";
+    import { browser } from "$app/env";
+    let user;
+    if (browser) {
+        user = localStorage.getItem("user");
+    }
 </script>
 
 <svelte:head>
@@ -14,7 +18,7 @@
 
 <nav>
     <ul>
-        {#if user != ""}
+        {#if user != null}
             <li>
                 <a href="/">Home</a>
             </li>
