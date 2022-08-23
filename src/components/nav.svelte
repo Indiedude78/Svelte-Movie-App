@@ -2,8 +2,14 @@
     import AppCss from "./../app.css";
     import { browser } from "$app/env";
     let user;
+    let home;
     if (browser) {
         user = localStorage.getItem("user");
+        if (user) {
+            home = "/home";
+        } else {
+            home = "/";
+        }
     }
 </script>
 
@@ -18,10 +24,10 @@
 
 <nav>
     <ul>
+        <li>
+            <a href={home}>Home</a>
+        </li>
         {#if user != null}
-            <li>
-                <a href="/">Home</a>
-            </li>
             <li>
                 <a href="/search">Search</a>
             </li>

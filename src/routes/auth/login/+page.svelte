@@ -23,12 +23,17 @@
 		if (data) {
 			console.log(data);
 			if (browser && data.jwt) {
-				localStorage.setItem("user", JSON.stringify(data));
-				window.location.href = "/";
+				localStorage.setItem("user", data.jwt);
+				console.log(localStorage.getItem("user"));
+				window.location.href = "/home";
+			} else if (browser && !data.jwt) {
+				message = data.error;
 			}
 		} else {
 			console.log("error");
 		}
+
+		password = "";
 	}
 </script>
 
