@@ -3,7 +3,11 @@
 	let password = "";
 	let message;
 	import { browser } from "$app/env";
-
+	if (browser) {
+		if (localStorage.getItem("user")) {
+			window.location.href = "/";
+		}
+	}
 	async function login(e) {
 		e.preventDefault();
 		const res = await fetch(

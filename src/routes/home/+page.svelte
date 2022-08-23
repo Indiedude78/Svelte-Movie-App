@@ -1,6 +1,3 @@
-<script context="module">
-</script>
-
 <script>
     import { browser } from "$app/env";
     import Card from "../../components/mediacard.svelte";
