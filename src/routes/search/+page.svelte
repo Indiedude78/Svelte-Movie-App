@@ -1,7 +1,42 @@
 <script>
+	import { browser } from "$app/env";
+	let token;
+	if (browser) {
+		token = localStorage.getItem("user");
+		if (!token) {
+			window.location.href = "/";
+		}
+	}
 	let movie = "";
+	let search_results = [];
 
-	$: searchquery = 'User searched for "' + movie + '"';
+	$: searchquery = 'Searching for... "' + movie + '"';
+
+	async function search(e) {
+		e.preventDefault();
+		search_results = [];
+		const res = await fetch(
+			"http://192.168.1.142/movie-api/protected/search.php",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({
+					movie,
+					token,
+				}),
+			}
+		);
+		const data = await res.json();
+		if (data.status == "success") {
+			//console.log(data.data.movies);
+			data.data.movies.forEach((movie) => {
+				search_results = [...search_results, movie];
+			});
+			console.log(search_results);
+		}
+	}
 </script>
 
 <svelte:head>
@@ -9,7 +44,7 @@
 </svelte:head>
 <h1>Search</h1>
 <!-- Create a form text input-->
-<form method="get">
+<form method="post" on:submit|preventDefault={search}>
 	<input
 		type="text"
 		bind:value={movie}
@@ -18,13 +53,23 @@
 		autocomplete="off"
 		placeholder="Search for a movie or a TV show"
 	/>
-	<input type="button" value="Search" />
+	<button type="submit">Search</button>
 </form>
 
 {#if movie !== ""}
 	<p>{searchquery}</p>
 {/if}
-<p />
+
+{#if search_results.length > 0}
+	<ul>
+		{#each search_results as movie}
+			<li>
+				<p>{movie.title}</p>
+			</li>
+		{/each}
+	</ul>
+	<button>Search More</button>
+{/if}
 
 <style>
 	form {
@@ -45,14 +90,14 @@
 		box-shadow: inset 0 0 0 1px #000;
 	}
 
-	input[type="button"] {
+	button {
 		border: 1px solid #000;
 		border-radius: 8px;
 		padding: 0.5rem;
 		margin: 0.5rem;
 	}
 
-	input[type="button"]:hover {
+	button:hover {
 		background-color: #fff;
 		color: #f00;
 		cursor: pointer;
