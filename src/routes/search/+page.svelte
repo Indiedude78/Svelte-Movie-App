@@ -1,5 +1,6 @@
 <script>
 	import { browser } from "$app/env";
+	import MediaCard from "../../components/mediacard.svelte";
 	let token;
 	if (browser) {
 		token = localStorage.getItem("user");
@@ -61,13 +62,19 @@
 {/if}
 
 {#if search_results.length > 0}
-	<ul>
+	<div class="movie-list">
 		{#each search_results as movie}
-			<li>
-				<p>{movie.title}</p>
-			</li>
+			{#if movie.poster}
+				<MediaCard
+					poster={movie.poster}
+					title={movie.title}
+					id={movie.imdb_id}
+				/>
+			{:else}
+				<MediaCard title={movie.title} id={movie.imdb_id} />
+			{/if}
 		{/each}
-	</ul>
+	</div>
 	<button>Search More</button>
 {/if}
 
@@ -101,5 +108,11 @@
 		background-color: #fff;
 		color: #f00;
 		cursor: pointer;
+	}
+	.movie-list {
+		display: flex;
+		justify-content: space-evenly;
+		align-items: center;
+		flex-wrap: wrap;
 	}
 </style>
