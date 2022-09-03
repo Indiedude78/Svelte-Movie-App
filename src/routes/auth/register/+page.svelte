@@ -26,7 +26,7 @@
 		e.preventDefault();
 		e.preventDefault();
 		const res = await fetch(
-			"http://192.168.1.142/movie-api/user/register.php",
+			"http://98.109.173.128:50014/movie-api/user/register.php",
 			{
 				method: "POST",
 				headers: {

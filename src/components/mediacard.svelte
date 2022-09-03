@@ -5,18 +5,20 @@
 	export let id;
 </script>
 
-<div class="card">
-	<div class="card-container">
-		<figure class="image">
-			<!-- svelte-ignore a11y-img-redundant-alt -->
-			<img src={poster} alt={title} />
-			<div class="media-content">
-				<p class="title is-4">{title}</p>
-				<p class="hide">{id}</p>
-			</div>
-		</figure>
+<a href="/movie/{id}">
+	<div class="card">
+		<div class="card-container">
+			<figure class="image">
+				<!-- svelte-ignore a11y-img-redundant-alt -->
+				<img src={poster} alt={title} />
+				<div class="media-content">
+					<p class="title is-4">{title}</p>
+					<p class="hide">{id}</p>
+				</div>
+			</figure>
+		</div>
 	</div>
-</div>
+</a>
 
 <style>
 	.card {

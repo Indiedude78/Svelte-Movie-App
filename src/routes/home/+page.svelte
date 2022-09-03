@@ -18,7 +18,7 @@
     //fetch user from api
     async function getUser() {
         const res = await fetch(
-            "http://192.168.1.142/movie-api/protected/profile.php",
+            "http://98.109.173.128:50014/movie-api/protected/profile.php",
             {
                 method: "POST",
                 headers: {
