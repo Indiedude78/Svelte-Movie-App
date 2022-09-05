@@ -1,5 +1,7 @@
 <script>
 	import { browser } from "$app/env";
+	import { goto } from "$app/navigation";
+	import defaultPic from "../../pictures/default.png";
 	import MediaCard from "../../components/mediacard.svelte";
 	let token;
 	if (browser) {
@@ -60,7 +62,7 @@
 		name="search"
 		id="search"
 		autocomplete="off"
-		placeholder="Search for a movie or a TV show"
+		placeholder="Search for a movie to begin"
 	/>
 	<button type="submit">Search</button>
 </form>
@@ -72,19 +74,43 @@
 {#if search_results.length > 0}
 	<div class="movie-list">
 		{#each search_results as movie}
-			{#if movie.poster != "N/A" && search_type == "Database"}
-				<MediaCard
-					poster={movie.poster}
-					title={movie.title}
-					id={movie.imdb_id}
-				/>
-			{:else if search_type == "API" && movie.Poster != "N/A"}
-				<MediaCard
-					title={movie.Title}
-					id={movie.imdbID}
-					poster={movie.Poster}
-				/>
-			{/if}
+			<div class="outer">
+				<div>
+					{#if movie.poster != "N/A" && search_type == "Database"}
+						<div>
+							<button>Add to watchlist</button>
+							<button
+								on:click={() => {
+									goto("/movie/" + movie.imdb_id);
+								}}
+							>
+								View
+							</button>
+						</div>
+						<MediaCard
+							poster={movie.poster}
+							title={movie.title}
+							id={movie.imdb_id}
+						/>
+					{:else if search_type == "API" && movie.Poster != "N/A"}
+						<div>
+							<button>Add to watchlist</button>
+							<button
+								on:click={() => {
+									goto("/movie/" + movie.imdbID);
+								}}
+							>
+								View
+							</button>
+						</div>
+						<MediaCard
+							title={movie.Title}
+							id={movie.imdbID}
+							poster={movie.Poster}
+						/>
+					{/if}
+				</div>
+			</div>
 		{/each}
 	</div>
 	<button>Search More</button>

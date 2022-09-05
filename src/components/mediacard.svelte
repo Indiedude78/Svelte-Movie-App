@@ -5,26 +5,25 @@
 	export let id;
 </script>
 
-<a href="/movie/{id}">
-	<div class="card">
-		<div class="card-container">
-			<figure class="image">
-				<!-- svelte-ignore a11y-img-redundant-alt -->
-				<img src={poster} alt={title} />
-				<div class="media-content">
-					<p class="title is-4">{title}</p>
-					<p class="hide">{id}</p>
-				</div>
-			</figure>
-		</div>
+<div class="card">
+	<div class="card-container">
+		<figure class="image">
+			<!-- svelte-ignore a11y-img-redundant-alt -->
+			<img src={poster} alt={title} />
+			<div class="media-content">
+				<p class="title is-4">{title}</p>
+				<p class="hide">{id}</p>
+			</div>
+		</figure>
 	</div>
-</a>
+</div>
 
 <style>
 	.card {
 		margin: 1rem;
 		text-align: center;
 		display: flex;
+		justify-content: center;
 	}
 	.card-container {
 		display: flex;
@@ -41,5 +40,10 @@
 	}
 	.hide {
 		display: none;
+	}
+	a {
+		text-decoration: none;
+		color: black;
+		font-size: 1.5em;
 	}
 </style>

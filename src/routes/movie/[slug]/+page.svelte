@@ -17,7 +17,6 @@
     let metascore;
     let plot;
     let poster;
-    let production;
     let rated;
     let released;
     let runtime;
@@ -50,24 +49,22 @@
         data = await res.json();
         console.log(data);
         if (data.status == "success") {
-            actors = data.data.movie_info.Actors;
-            awards = data.data.movie_info.Awards;
-            box_office = data.data.movie_info.BoxOffice;
-            country = data.data.movie_info.Country;
-            director = data.data.movie_info.Director;
-            genre = data.data.movie_info.Genre;
-            language = data.data.movie_info.Language;
-            metascore = data.data.movie_info.Metascore;
-            plot = data.data.movie_info.Plot;
-            poster = data.data.movie_info.Poster;
-            production = data.data.movie_info.Production;
-            rated = data.data.movie_info.Rated;
-            released = data.data.movie_info.Released;
-            runtime = data.data.movie_info.Runtime;
-            title = data.data.movie_info.Title;
-            writer = data.data.movie_info.Writer;
-            year = data.data.movie_info.Year;
-            imdb_rating = data.data.movie_info.imdbRating;
+            actors = data.data.actors;
+            awards = data.data.awards;
+            box_office = data.data.box_office;
+            country = data.data.country;
+            director = data.data.director;
+            genre = data.data.genre;
+            language = data.data.language;
+            metascore = data.data.metascore;
+            plot = data.data.plot;
+            poster = data.data.poster;
+            rated = data.data.maturity_rating;
+            released = data.data.release_year;
+            runtime = data.data.runtime;
+            title = data.data.title;
+            writer = data.data.writer;
+            imdb_rating = data.data.imdb_rating;
         }
     });
 </script>
@@ -117,10 +114,6 @@
         <div>
             <h2>Metascore</h2>
             <p>{metascore}</p>
-        </div>
-        <div>
-            <h2>Production</h2>
-            <p>{production}</p>
         </div>
         <div>
             <h2>Rated</h2>
